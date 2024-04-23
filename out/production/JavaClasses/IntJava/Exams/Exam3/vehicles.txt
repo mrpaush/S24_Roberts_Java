@@ -1,0 +1,3 @@
+Motorcycles, KTM, 1, 9000.0, 180
+Trucks, Tacoma, 2, 50000.0, 5000
+SUVs, Suburban, 3, 80000.0, 3
