@@ -1,7 +1,4 @@
-package AdvJava;
-
-import java.util.ArrayList;
-import java.util.Comparator;
+package AdvJava.Class;
 
 public class GenericBBsort {
     public static void main(String[] args) {
