@@ -1,6 +1,4 @@
-package AdvJava.Class;
-
-import java.util.Arrays;
+package AdvJava.Class.StackDemo;
 
 public class Stack {
     private int[] arr;
@@ -32,5 +30,6 @@ public class Stack {
             System.out.println(arr[Head]);
             Head--;
         }
+        return 1;
     }
 }
