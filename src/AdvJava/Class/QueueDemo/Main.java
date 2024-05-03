@@ -2,22 +2,23 @@ package AdvJava.Class.QueueDemo;
 
 public class Main {
     Queue test = new Queue(5);
-    test.enqueue(5);
 }
 
 class Queue {
     protected boolean isEmpty;
     protected boolean isFull;
     protected int[] arr;
-    protected int head;
-    protected int tail;
-    protected final int size;
+    protected int front;
+    protected int rear;
+    protected int size;
+    protected int capacity;
 
     public Queue(int s) {
+        size = 0;
         arr = new int[s];
-        size = s;
-        head = 0;
-        tail = 0;
+        capacity = s;
+        front = 0;
+        rear = 0;
     }
 
     public void enqueue(int e) {
@@ -25,32 +26,35 @@ class Queue {
             System.out.println("full");
             return;
         }
-            arr[tail] = e;
-            tail = (tail+1) % size;
+            arr[rear] = e;
+            size++;
+            rear = (rear +1) % capacity;
     }
-    public void dequeue() {
+    public int dequeue() {
         if (isEmpty) {
             System.out.println("empty");
-            return;
+            return -1;
         }
-        head = (head+1) % size;
+        int item = arr[front];
+        front = (front +1) % capacity;
+        size--;
+        return item;
     }
     public boolean isEmpty() {
-        return head == tail;
+        return size == 0;
     }
     public boolean isFull() {
-        return tail == head-1;
+        return size == capacity;
     }
     public void Display() {
-        for (int elem : arr) {
-            System.out.print(elem + " ");
+        for (int i = 0; i < size; i++) {
+            System.out.println(arr[(front+i)%capacity]);
         }
-        System.out.println("\n");
     }
     public int peekFront() {
-        return arr[head];
+        return arr[front];
     }
     public int peekRear() {
-        return arr[tail-1];
+        return arr[rear -1];
     }
 }
