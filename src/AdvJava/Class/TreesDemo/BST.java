@@ -17,10 +17,7 @@ public class BST {
         System.out.println(search(bt.root, 3));
         System.out.println(search(bt.root, 10));
         System.out.println("\n");
-        delete(bt.root, 3);
-        traversal(bt.root);
-        System.out.println("\n");
-        delete(bt.root, 9);
+        delete(bt.root, 6);
         traversal(bt.root);
     }
 
@@ -28,7 +25,7 @@ public class BST {
         root = insert(root, value);
     }
 
-    private Node insert(Node current, int value) {
+    private static Node insert(Node current, int value) {
         if (current == null) return new Node(value);
         if (value < current.value) current.left = insert(current.left, value);
         else if (value > current.value) current.right = insert(current.right, value);
@@ -52,17 +49,27 @@ public class BST {
 
     private static Node delete(Node current, int value) {
         if (current == null) return null;
-        if (current.value == value) {
+        else if (current.value == value) {
             if (current.left == null && current.right == null) return null;
-            if (current.right == null) return current.left;
-            if (current.left == null) return current.right;
+            else if (current.right == null) return current.left;
+            else if (current.left == null) return current.right;
+            else {
+                int smallestValue = findSmallestValue(current.right);
+                current.value = smallestValue;
+                current.right = delete(current.right, smallestValue);
+                return current;
+            }
         }
-        if (value < current.value) {
+        else if (value < current.value) {
             current.left = delete(current.left, value);
             return current;
         }
         current.right = delete(current.right, value);
         return current;
+    }
+
+    private static int findSmallestValue(Node root) {
+        return root.left == null ? root.value : findSmallestValue(root.left);
     }
 }
 
